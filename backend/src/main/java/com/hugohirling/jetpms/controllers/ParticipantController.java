@@ -1,8 +1,11 @@
 package com.hugohirling.jetpms.controllers;
 
+import com.hugohirling.jetpms.entities.Equipment;
 import com.hugohirling.jetpms.entities.Participant;
 import com.hugohirling.jetpms.exceptions.RecordNotFoundException;
 import com.hugohirling.jetpms.responsemodels.FullParticipantResponse;
+import com.hugohirling.jetpms.services.EquipmentService;
+import com.hugohirling.jetpms.services.ParticipantEquipmentService;
 import com.hugohirling.jetpms.services.ParticipantService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +24,10 @@ public class ParticipantController {
 
     @Autowired
     private ParticipantService participantService;
+    @Autowired
+    private ParticipantEquipmentService participantEquipmentService;
+    @Autowired
+    private EquipmentService equipmentService;
 
     private final Logger logger = LoggerFactory.getLogger(ParticipantController.class);
 
@@ -48,6 +55,31 @@ public class ParticipantController {
         returnMap.put("allowed", "true");
         returnMap.put("message", "Successfully");
         participantService.addNew(participant);
+
+        return returnMap;
+    }
+
+    @PostMapping(path="addEquip/{participantid}/{equipmentid}")
+    public Map<String, String> addEquipmentToParticipant(@PathVariable("participantid") Integer participantId, @PathVariable("equipmentid") Integer equipmentId) {
+        Map<String, String> returnMap = new HashMap<>();
+
+        Optional<Participant> participantOptional = participantService.get(participantId);
+        Optional<Equipment> equipmentOptional = equipmentService.get(equipmentId);
+        if(participantOptional.isEmpty()) {
+            this.logger.warn(String.format("Get-Request: Get participant with id: participant with id-%s doesn't exist", participantId));
+            throw new RecordNotFoundException();
+        }
+        if(equipmentOptional.isEmpty()) {
+            this.logger.warn(String.format("Get-Request: Get equipment with id: equipment with id-%s doesn't exist", equipmentId));
+            throw new RecordNotFoundException();
+        }
+
+        participantEquipmentService.assignParticipantToEquipment(participantOptional.get(), equipmentOptional.get());
+
+        this.logger.info("Added equipment to participant");
+
+        returnMap.put("allowed", "true");
+        returnMap.put("message", "Successfully");
 
         return returnMap;
     }
