@@ -17,12 +17,15 @@ public class Participant {
     private String first;
     private String last;
     private Date dateOfBirth;
+    @Enumerated(EnumType.STRING)
     private LocalGroup localGroup;
     private String phoneNumber;
     private String email;
     private String threemaID;
     private String emergencyPhoneNumber;
+    @Enumerated(EnumType.STRING)
     private DRSA drsa;
+    @Enumerated(EnumType.STRING)
     private ImageRight imageRight;
 
     @OneToMany(mappedBy = "assignedTo")

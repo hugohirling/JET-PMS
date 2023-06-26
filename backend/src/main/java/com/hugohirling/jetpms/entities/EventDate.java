@@ -1,9 +1,6 @@
 package com.hugohirling.jetpms.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.List;
@@ -18,6 +15,7 @@ public class EventDate {
     private Date date;
     @ManyToMany(mappedBy = "attendedDates")
     private List<Participant> participants;
+    @Enumerated(EnumType.STRING)
     private Compartment compartment;
     private String notes;
 

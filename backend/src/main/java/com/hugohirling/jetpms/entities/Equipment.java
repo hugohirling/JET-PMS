@@ -11,6 +11,7 @@ public class Equipment {
     @GeneratedValue
     private Integer eid;
 
+    @Enumerated(EnumType.STRING)
     private EquipmentType equipmentType;
     private String size;
     @ManyToOne
