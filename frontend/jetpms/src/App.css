@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+/* Columns */
+div.dropdown-multicol2{
+  width: 25em;
+}
+div.dropdown-multicol2>div.dropdown-col{
+  display:inline-block;
+  width: 50%;
+}
