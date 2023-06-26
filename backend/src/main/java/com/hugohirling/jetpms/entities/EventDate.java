@@ -19,8 +19,8 @@ public class EventDate {
     private Compartment compartment;
     private String notes;
 
-
-
+    public EventDate() {
+    }
 
     public Integer getEvid() {
         return evid;

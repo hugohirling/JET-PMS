@@ -1,4 +1,4 @@
-package com.hugohirling.jetpms.responsemodels;
+package com.hugohirling.jetpms.models.response;
 
 import com.hugohirling.jetpms.entities.DRSA;
 import com.hugohirling.jetpms.entities.ImageRight;
@@ -6,7 +6,6 @@ import com.hugohirling.jetpms.entities.LocalGroup;
 import com.hugohirling.jetpms.entities.Participant;
 
 import java.util.Date;
-import java.util.List;
 
 public class SimpleParticipantResponse {
 

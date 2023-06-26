@@ -18,7 +18,15 @@ public class Equipment {
     @JoinColumn(name = "assigned_to_uid")
     private Participant assignedTo;
 
+    public Equipment() {
+    }
 
+    public Equipment(Integer eid, EquipmentType equipmentType, String size, Participant assignedTo) {
+        this.eid = eid;
+        this.equipmentType = equipmentType;
+        this.size = size;
+        this.assignedTo = assignedTo;
+    }
 
     public Integer getEid() {
         return eid;

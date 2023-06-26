@@ -1,4 +1,4 @@
-package com.hugohirling.jetpms.responsemodels;
+package com.hugohirling.jetpms.models.response;
 
 import com.hugohirling.jetpms.entities.Equipment;
 import com.hugohirling.jetpms.entities.EquipmentType;
