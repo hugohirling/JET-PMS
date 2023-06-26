@@ -1,6 +1,7 @@
 package com.hugohirling.jetpms.responsemodels;
 
 import com.hugohirling.jetpms.entities.Compartment;
+import com.hugohirling.jetpms.entities.EventDate;
 
 import java.util.Date;
 import java.util.List;
@@ -16,5 +17,15 @@ public class FullEventDateResponse extends SimpleEventDateResponse{
 
     public List<SimpleParticipantResponse> getParticipants() {
         return participants;
+    }
+
+    public static FullEventDateResponse getFromEventDate(final EventDate eventDate) {
+        return new FullEventDateResponse(
+                eventDate.getEvid(),
+                eventDate.getDate(),
+                eventDate.getCompartment(),
+                eventDate.getNotes(),
+                eventDate.getParticipants().stream().map(SimpleParticipantResponse::getFromParticipant).toList()
+        );
     }
 }

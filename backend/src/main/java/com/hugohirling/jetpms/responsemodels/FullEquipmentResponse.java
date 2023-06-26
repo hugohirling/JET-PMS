@@ -1,5 +1,6 @@
 package com.hugohirling.jetpms.responsemodels;
 
+import com.hugohirling.jetpms.entities.Equipment;
 import com.hugohirling.jetpms.entities.EquipmentType;
 
 public class FullEquipmentResponse extends SimpleEquipmentResponse{
@@ -13,5 +14,14 @@ public class FullEquipmentResponse extends SimpleEquipmentResponse{
 
     public SimpleParticipantResponse getParticipant() {
         return participant;
+    }
+
+    public static FullEquipmentResponse getFromEquipment(final Equipment equipment) {
+        return new FullEquipmentResponse(
+                equipment.getEid(),
+                equipment.getEquipmentType(),
+                equipment.getSize(),
+                equipment.getAssignedTo().isPresent() ? SimpleParticipantResponse.getFromParticipant(equipment.getAssignedTo().get()) : null
+        );
     }
 }

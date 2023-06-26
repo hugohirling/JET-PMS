@@ -3,6 +3,7 @@ package com.hugohirling.jetpms.responsemodels;
 import com.hugohirling.jetpms.entities.DRSA;
 import com.hugohirling.jetpms.entities.ImageRight;
 import com.hugohirling.jetpms.entities.LocalGroup;
+import com.hugohirling.jetpms.entities.Participant;
 
 import java.util.Date;
 import java.util.List;
@@ -95,6 +96,23 @@ public class SimpleParticipantResponse {
 
     public String getNote() {
         return note;
+    }
+
+    public static SimpleParticipantResponse getFromParticipant(final Participant participant) {
+        return new SimpleParticipantResponse(
+                participant.getUid(),
+                participant.getFirst(),
+                participant.getLast(),
+                participant.getDateOfBirth(),
+                participant.getLocalGroup(),
+                participant.getPhoneNumber().orElse(null),
+                participant.getEmail().orElse(null),
+                participant.getThreemaID().orElse(null),
+                participant.getEmergencyPhoneNumber().orElse(null),
+                participant.getDrsa().orElse(null),
+                participant.getImageRight().orElse(null),
+                participant.getNote().orElse(null)
+        );
     }
 
 }

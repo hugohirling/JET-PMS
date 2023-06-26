@@ -26,7 +26,7 @@ public class EquipmentService {
         return equipmentRepository.findById(id);
     }
 
-    public void save(final Equipment equipment) {
+    public void addNew(final Equipment equipment) {
         equipmentRepository.save(equipment);
     }
 }

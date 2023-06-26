@@ -25,7 +25,7 @@ public class EventDateService {
         return eventDateRepository.findById(id);
     }
 
-    public void save(final EventDate eventDate) {
+    public void addNew(final EventDate eventDate) {
         eventDateRepository.save(eventDate);
     }
 }
